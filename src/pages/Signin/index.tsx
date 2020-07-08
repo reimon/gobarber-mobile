@@ -35,6 +35,8 @@ const SignIn: React.FC = () => {
   const navigation = useNavigation();
   const formRef = useRef<FormHandles>(null);
 
+  // formRef.current.
+
   const handleSingIn = useCallback(async (data: object) => {
     console.log(data);
   }, []);
@@ -53,6 +55,7 @@ const SignIn: React.FC = () => {
             <View>
               <Title>Faça seu Logon</Title>
             </View>
+
             <Form ref={formRef} onSubmit={handleSingIn}>
               <Input name="email" icon="mail" placeholder="E-mail" />
               <Input name="password" icon="lock" placeholder="Senha" />

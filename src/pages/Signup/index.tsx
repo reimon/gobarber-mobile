@@ -10,9 +10,12 @@ import {
 } from 'react-native';
 import Icon from 'react-native-vector-icons/Feather';
 import {useNavigation} from '@react-navigation/native';
-// import {Form} from '@unform/mobile';
+
+import {Form} from '@unform/mobile';
+import {FormHandles} from '@unform/core';
+
 // import * as Yup from 'yup';
-// import {FormHandles} from '@unform/core';
+
 // import getValidationErrors from '../../utils/getValidationErrors';
 // import api from '../../services/api';
 import Input from '../../components/Input';
@@ -28,7 +31,7 @@ interface SignUpFormData {
 }
 
 const SignUp: React.FC = () => {
-  // const formRef = useRef<FormHandles>(null);
+  const formRef = useRef<FormHandles>(null);
   // const passwordInputRef = useRef<TextInput>(null);
   // const emailInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
@@ -90,30 +93,38 @@ const SignUp: React.FC = () => {
               <Title>Crie sua conta</Title>
             </View>
 
-            <Input
-              autoCapitalize="words"
-              name="name"
-              icon="user"
-              placeholder="Nome"
-              returnKeyType="next"
-            />
-            <Input
-              autoCorrect={false}
-              keyboardType="email-address"
-              name="email"
-              icon="mail"
-              placeholder="E-mail"
-              returnKeyType="next"
-            />
-            <Input
-              name="password"
-              icon="lock"
-              placeholder="Senha"
-              secureTextEntry
-              textContentType="newPassword"
-              returnKeyType="send"
-            />
-            <Button onPress={() => console.log('OK')}>Entrar</Button>
+            <Form
+              ref={formRef}
+              onSubmit={(data) => {
+                console.log(data);
+              }}>
+              <Input
+                autoCapitalize="words"
+                name="name"
+                icon="user"
+                placeholder="Nome"
+                returnKeyType="next"
+              />
+              <Input
+                autoCorrect={false}
+                keyboardType="email-address"
+                name="email"
+                icon="mail"
+                placeholder="E-mail"
+                returnKeyType="next"
+              />
+              <Input
+                name="password"
+                icon="lock"
+                placeholder="Senha"
+                secureTextEntry
+                textContentType="newPassword"
+                returnKeyType="send"
+              />
+              <Button onPress={() => formRef.current?.submitForm()}>
+                Entrar
+              </Button>
+            </Form>
           </Container>
         </ScrollView>
       </KeyboardAvoidingView>

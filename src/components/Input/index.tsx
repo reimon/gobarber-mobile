@@ -25,6 +25,7 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({
   const inputElementRef = useRef<any>(null);
 
   const {} = useField(name);
+
   const {registerField, defaultValue = '', fieldName, error} = useField(name);
   const inputValueRef = useRef<InputValueReferente>({value: defaultValue});
 
@@ -32,17 +33,27 @@ const Input: React.RefForwardingComponent<InputRef, InputProps> = ({
   const [isFielled, setIsFielled] = useState(false);
 
   useEffect(() => {
-    registerField({
+    registerField<string>({
       name: fieldName,
       ref: inputValueRef.current,
       path: 'value',
+      setValue(ref: any, value) {
+        inputValueRef.current.value = value;
+        inputElementRef.current.setNativeProps({text: value});
+      },
+      clearValue() {
+        inputValueRef.current.value = '';
+        inputElementRef.current.clear();
+      },
     });
   }, [fieldName, registerField]);
+
   return (
     <Container>
       <Icon name={icon} size={20} color="#666360" />
 
       <TextInput
+        ref={inputElementRef}
         keyboardAppearance="dark"
         placeholderTextColor="#666360"
         defaultValue={defaultValue}
