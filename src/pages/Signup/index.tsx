@@ -32,8 +32,8 @@ interface SignUpFormData {
 
 const SignUp: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  // const passwordInputRef = useRef<TextInput>(null);
-  // const emailInputRef = useRef<TextInput>(null);
+  const passwordInputRef = useRef<TextInput>(null);
+  const emailInputRef = useRef<TextInput>(null);
   const navigation = useNavigation();
 
   // const handleSignUp = useCallback(
@@ -100,26 +100,37 @@ const SignUp: React.FC = () => {
               }}>
               <Input
                 autoCapitalize="words"
+                autoCorrect={false}
                 name="name"
                 icon="user"
                 placeholder="Nome"
                 returnKeyType="next"
+                onSubmitEditing={() => {
+                  emailInputRef.current?.focus();
+                }}
               />
               <Input
+                ref={emailInputRef}
                 autoCorrect={false}
                 keyboardType="email-address"
+                autoCapitalize="none"
                 name="email"
                 icon="mail"
                 placeholder="E-mail"
                 returnKeyType="next"
+                onSubmitEditing={() => {
+                  passwordInputRef.current?.focus();
+                }}
               />
               <Input
+                ref={passwordInputRef}
                 name="password"
                 icon="lock"
                 placeholder="Senha"
                 secureTextEntry
                 textContentType="newPassword"
                 returnKeyType="send"
+                onSubmitEditing={() => formRef.current?.submitForm()}
               />
               <Button onPress={() => formRef.current?.submitForm()}>
                 Entrar
