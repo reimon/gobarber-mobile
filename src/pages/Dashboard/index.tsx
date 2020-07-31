@@ -6,7 +6,6 @@ import api from '../../services/api';
 
 import {
   Container,
-  Button,
   Header,
   UserName,
   HeaderTitle,
@@ -70,7 +69,11 @@ const Dashboard: React.FC = () => {
         renderItem={({item: provider}) => (
           <ProviderContainer
             onPress={() => navigateToCreateAppointment(provider.id)}>
-            <ProviderAvatar source={{uri: provider.avatar_url}} />
+            {provider.avatar_url ? (
+              <ProviderAvatar source={{uri: provider.avatar_url}} />
+            ) : (
+              <></>
+            )}
             <ProviderInfo>
               <ProviderName>{provider.name}</ProviderName>
 
@@ -87,7 +90,6 @@ const Dashboard: React.FC = () => {
           </ProviderContainer>
         )}
       />
-      {/* <Button title="Sair" onPress={signOut} /> */}
     </Container>
   );
 };

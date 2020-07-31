@@ -6,7 +6,6 @@ import {RectButton} from 'react-native-gesture-handler';
 
 export const Container = styled.View`
   flex: 1;
-  /* justify-content: center; */
 `;
 
 export const Header = styled.View`
@@ -83,5 +82,3 @@ export const ProviderMetaText = styled.Text`
   color: #999591;
   font-family: 'RobotoSlab-Regular';
 `;
-
-export const Button = styled.Button``;
