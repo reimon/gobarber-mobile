@@ -1,12 +1,14 @@
 import React from 'react';
 
 import {Container, Button} from './styles';
-import {View} from 'react-native';
+import {View, Text} from 'react-native';
 
 const CreateAppointment: React.FC = () => {
   return (
     <Container>
-      <View>CreateAppointment</View>
+      <View>
+        <Text>CreateAppointment</Text>
+      </View>
     </Container>
   );
 };
