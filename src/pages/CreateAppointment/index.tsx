@@ -121,7 +121,7 @@ const CreateAppointment: React.FC = () => {
         provider_id: selectedProvider,
         date,
       })
-      console.log(date)
+
       navigate('AppointmentCreated', { date: date.getTime() })
     } catch (err) {
       Alert.alert(
