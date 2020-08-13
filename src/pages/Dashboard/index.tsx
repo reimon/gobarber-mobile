@@ -56,6 +56,9 @@ const Dashboard: React.FC = () => {
           Bem vindo! {'\n'}
           <UserName>{user.name}</UserName>
         </HeaderTitle>
+        <ProfileButton onPress={signOut}>
+          <Icon name="power" size={14} color="#ff9000" />
+        </ProfileButton>
         <ProfileButton onPress={navigateToProfile}>
           <UserAvatar
             source={{
